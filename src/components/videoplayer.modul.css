@@ -28,13 +28,28 @@
 }
 
 .video-list {
-  height: 90vh;
+  height: 91vh;
   overflow-y: scroll;
+  transition: left 0.3s;
 }
 
-/* .video-list::-webkit-scrollbar {
-  display: none;
-} */
+/* Hide scrollbar when not hovering */
+/* .video-list:not(:hover) {
+  overflow-y: hidden;
+}
+ */
+/* Customize scrollbar appearance */
+.video-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.video-list::-webkit-scrollbar-thumb {
+  background-color: #fff;
+}
+
+.video-list::-webkit-scrollbar-track {
+  background-color: #000;
+}
 
 .video-details {
   background-color: rgba(0, 0, 0, 0.3);
