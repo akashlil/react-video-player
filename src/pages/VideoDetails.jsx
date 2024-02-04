@@ -73,13 +73,14 @@ export default function () {
   const playerRef = useRef(null);
 
   useEffect(() => {
-    if (playerRef?.current) {
+    if (playerRef.current) {
       // Destroy the Plyr player if it exists
       if (player) {
         player.destroy();
       }
+
       // Create a new Plyr player
-      const newPlayer = new Plyr(playerRef?.current, {
+      const newPlayer = new Plyr(playerRef.current, {
         controls: [
           "play-large",
           "play",
@@ -98,9 +99,6 @@ export default function () {
 
       // Set the Plyr player instance in the state
       setPlayer(newPlayer);
-
-      // Change video when the component mounts
-      // changeVideo(currentVideoIndex);
     }
   }, [videoDetails, newVideoPlayList]);
 
@@ -111,7 +109,7 @@ export default function () {
         type: "video",
         sources: [
           {
-            src: video.src, // Check if video.src is correct
+            src: video.src,
             type: "video/mp4",
           },
         ],
@@ -119,6 +117,7 @@ export default function () {
 
       // Reload the Plyr player
       playerRef.current.load();
+      playerRef.current.play(); // Add this line to play the video
     }
   };
 
