@@ -105,6 +105,9 @@ export default function () {
   }, [videoDetails, newVideoPlayList]);
 
   const changeVideo = (video) => {
+    // Reload the Plyr player
+    playerRef.current.load();
+    playerRef.current.play();
     setNewVideoPlayList(video);
     if (playerRef.current) {
       playerRef.current.source = {
