@@ -28,16 +28,16 @@
 }
 
 .video-list {
-  height: 91vh;
+  height: 80vh;
   overflow-y: scroll;
   transition: left 0.3s;
 }
 
 /* Hide scrollbar when not hovering */
-/* .video-list:not(:hover) {
+.video-list:not(:hover) {
   overflow-y: hidden;
 }
- */
+
 /* Customize scrollbar appearance */
 .video-list::-webkit-scrollbar {
   width: 5px;
