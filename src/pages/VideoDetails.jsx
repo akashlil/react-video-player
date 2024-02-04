@@ -99,6 +99,8 @@ export default function () {
 
       // Set the Plyr player instance in the state
       setPlayer(newPlayer);
+      playerRef.current.load();
+      playerRef.current.play();
     }
   }, [videoDetails, newVideoPlayList]);
 
