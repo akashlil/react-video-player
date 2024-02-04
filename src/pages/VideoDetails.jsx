@@ -104,17 +104,14 @@ export default function () {
     }
   }, [videoDetails, newVideoPlayList]);
 
-  // Function to change the video source
   const changeVideo = (video) => {
-    // console.log(video);
     setNewVideoPlayList(video);
-    // playerRef.current.load();
     if (playerRef.current) {
       playerRef.current.source = {
         type: "video",
         sources: [
           {
-            src: video.src,
+            src: video.src, // Check if video.src is correct
             type: "video/mp4",
           },
         ],
