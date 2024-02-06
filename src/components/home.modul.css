@@ -1,0 +1,41 @@
+.video-title {
+  font-size: 24px;
+  margin-top: 15px;
+}
+.react-player {
+  z-index: -100;
+}
+
+.video-list {
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.video-list > .active {
+  color: green;
+}
+
+.next-video {
+  border: none;
+  border-radius: 5px;
+  margin-right: 20px;
+  color: #000;
+  padding: 10px 18px;
+  background-color: rgba(104, 107, 109, 0.795);
+}
+.next-video {
+  border: none;
+  border-radius: 5px;
+  margin-right: 20px;
+  color: #000;
+  padding: 10px 18px;
+  background-color: rgba(104, 107, 109, 0.795);
+}
+.prev-video {
+  border: none;
+  border-radius: 5px;
+  margin-right: 20px;
+  color: #000;
+  padding: 10px 18px;
+  background-color: rgba(104, 107, 109, 0.795);
+}
