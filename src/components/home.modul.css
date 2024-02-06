@@ -14,6 +14,9 @@
 .video-list > .active {
   color: green;
 }
+.list-title {
+  cursor: pointer;
+}
 
 .next-video {
   border: none;

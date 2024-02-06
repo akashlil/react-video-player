@@ -107,7 +107,9 @@ function App() {
               <p
                 key={video.id}
                 onClick={() => setCurrentVideoIndex(index)}
-                className={index === currentVideoIndex ? "active" : ""}
+                className={`list-title ${
+                  index === currentVideoIndex ? "active" : ""
+                }`}
               >
                 {video.title}
               </p>
