@@ -8,7 +8,7 @@ function App() {
   const currentVideo = videoList[currentVideoIndex];
 
   useEffect(() => {
-    fetch("https://server-api-test.vercel.app/allproduct/show")
+    fetch("http://localhost:9000/allproduct/show")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);

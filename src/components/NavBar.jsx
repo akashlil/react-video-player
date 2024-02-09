@@ -22,6 +22,7 @@ const Navbar = () => {
           <div className={`cs-navbar-links ${isNavOpen ? "active" : ""}`}>
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
+            <Link to="/dashboard">Dashboard</Link>
             <span className="cursor-pointer">Themes</span>
           </div>
 

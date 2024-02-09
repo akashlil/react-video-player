@@ -18,3 +18,67 @@ body {
 a {
   text-decoration: none;
 }
+
+/* Sidebar styles */
+.sidebar {
+  height: 100vh;
+  width: 15%;
+  position: relative;
+  background-color: #333;
+  overflow-x: hidden;
+  transition: width 0.3s; /* Smooth transition */
+}
+.close-btn-section {
+  display: flex;
+  justify-content: flex-end;
+}
+/* Close button */
+.close-btn {
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+}
+
+/* Content styles */
+.content {
+  width: 85%;
+  height: 100vh;
+  padding: 16px;
+  transition: margin-left 0.3s; /* Smooth transition */
+}
+
+/* Style for sidebar when collapsed */
+.sidebar.collapsed {
+  width: 10%; /* Collapsed width */
+}
+
+/* Style for content when sidebar is collapsed */
+.content.collapsed {
+  width: 90%; /* Adjust for collapsed sidebar */
+}
+
+@media screen and (max-width: 767px) {
+  .sidebar {
+    position: fixed;
+    z-index: 111;
+    width: 0%;
+  }
+  /* .close-btn {
+    color: white;
+    position: relative;
+    cursor: pointer;
+    text-align: end;
+    top: 15px;
+  } */
+  .sidebar.collapsed {
+    width: 50%; /* Collapsed width */
+    display: block;
+  }
+  /* Style for content when sidebar is collapsed */
+  .content {
+    width: 100%; /* Adjust for collapsed sidebar */
+  }
+  .content.collapsed {
+    width: 100%; /* Adjust for collapsed sidebar */
+  }
+}
