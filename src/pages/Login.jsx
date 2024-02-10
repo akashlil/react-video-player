@@ -8,6 +8,7 @@ import { useLoginUserMutation } from "../features/auth/registrationApiInj";
 
 const Login = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ const Login = () => {
     e.preventDefault();
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = async (e) => {
@@ -64,13 +69,21 @@ const Login = () => {
                 Password
               </label>
               <input
-                type="password"
+                // type="password"
                 className="form-control col-md-6"
                 name="password"
                 value={userData.password}
                 onChange={handleLogin}
+                type={showPassword ? "text" : "password"}
                 id="exampleInputPassword1"
               />
+              <div
+                type="button"
+                className="btn btn-sm btn-primary mt-2"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? "Hide" : "Show"} Password
+              </div>
             </div>
             <button type="submit" className="btn btn-primary">
               Submit

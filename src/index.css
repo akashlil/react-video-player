@@ -20,17 +20,37 @@ a {
 }
 
 /* Sidebar styles */
+
+.dashboard-content {
+  display: flex;
+}
 .sidebar {
   height: 100vh;
-  width: 15%;
+  flex-basis: 15%;
   position: relative;
-  background-color: #333;
+  background-color: #222d32;
   overflow-x: hidden;
   transition: width 0.3s; /* Smooth transition */
 }
+
+/* Content styles */
+.content {
+  width: 85%;
+  height: 100vh;
+  transition: margin-left 0.3s; /* Smooth transition */
+}
+.log-out {
+  cursor: pointer;
+}
+
 .close-btn-section {
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
+  position: fixed;
+  width: 300px;
+  z-index: 11;
+  align-items: center;
+  background-color: #00a65a;
 }
 /* Close button */
 .close-btn {
@@ -38,23 +58,23 @@ a {
   cursor: pointer;
   padding: 15px;
 }
-
-/* Content styles */
-.content {
-  width: 85%;
-  height: 100vh;
-  padding: 16px;
-  transition: margin-left 0.3s; /* Smooth transition */
+.all-ul-contect {
+  list-style: none;
+  margin: 0;
 }
-
-/* Style for sidebar when collapsed */
-.sidebar.collapsed {
-  width: 10%; /* Collapsed width */
+.link-hover-sidebar {
+  padding: 6px 6px;
+  margin-left: 6px;
+  color: #aeadad;
+  background-color: transparent;
+  transition: all 0.5s ease-in-out;
 }
-
-/* Style for content when sidebar is collapsed */
-.content.collapsed {
-  width: 90%; /* Adjust for collapsed sidebar */
+.link-hover-sidebar.active {
+  color: #000;
+  background-color: #fff;
+}
+.gray-custom {
+  background-color: #00a65a;
 }
 
 @media screen and (max-width: 767px) {
@@ -63,13 +83,7 @@ a {
     z-index: 111;
     width: 0%;
   }
-  /* .close-btn {
-    color: white;
-    position: relative;
-    cursor: pointer;
-    text-align: end;
-    top: 15px;
-  } */
+
   .sidebar.collapsed {
     width: 50%; /* Collapsed width */
     display: block;
@@ -78,7 +92,7 @@ a {
   .content {
     width: 100%; /* Adjust for collapsed sidebar */
   }
-  .content.collapsed {
-    width: 100%; /* Adjust for collapsed sidebar */
+  .close-btn-section {
+    width: 165px;
   }
 }
