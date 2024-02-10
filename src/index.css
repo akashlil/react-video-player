@@ -18,7 +18,25 @@ body {
 a {
   text-decoration: none;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
+/* dashbord-navbar styles */
 
+.dashbord-navbar {
+  position: fixed;
+  top: 0;
+  background-color: #00a65a;
+  z-index: 1111;
+  width: inherit;
+  padding: 15px;
+}
+.all-dashborad-content {
+  margin-top: 60px;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  overflow-y: scroll;
+}
 /* Sidebar styles */
 
 .dashboard-content {
@@ -94,5 +112,8 @@ a {
   }
   .close-btn-section {
     width: 165px;
+  }
+  .all-ul-contect {
+    padding-left: 10px;
   }
 }

@@ -1,6 +1,5 @@
 import React, { Children, useEffect, useRef } from "react";
 import { Link, Navigate, Route, Routes } from "react-router-dom";
-import Admin from "./Admin";
 import User from "./User";
 import PrivateRoute from "../components/PrivateRoute";
 import Overview from "../components/Overview";
@@ -8,6 +7,7 @@ import { logout } from "../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUserRole } from "../features/auth/roleSlice";
 import CreateAdmin from "../components/Admin/CreateAdmin";
+import Admin from "../components/Admin/Admin";
 
 const Dashboard = () => {
   const listContext = useRef();
@@ -56,7 +56,7 @@ const Dashboard = () => {
     <div className="">
       <div className="dashboard-content">
         <div className="sidebar" id="sidebar">
-          <div className="close-btn-section d-flex align-items-center">
+          <div className="close-btn-section">
             <span className="close-btn" onClick={toggleSidebar}>
               &#9776;
             </span>
@@ -97,8 +97,8 @@ const Dashboard = () => {
             </ul>
           ))}
         </div>
-        <div className="content " id="content">
-          <div className="position-relative gray-custom text-white p-3">
+        <div className="content" id="content">
+          <div className="dashbord-navbar">
             <div className="d-flex justify-content-between align-items-center">
               <div>
                 <span
@@ -115,37 +115,32 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <Routes>
-            <Route path="/" element={<Navigate to="overview" />} />
-            <Route path="overview" element={<Overview />} />
-            {/* <Route path="profile" element={<Profile />} /> */}
+          <div className="all-dashborad-content">
+            <Routes>
+              <Route path="/" element={<Navigate to="overview" />} />
+              <Route path="overview" element={<Overview />} />
+              <Route path="user" element={<User />} />
+              {/* <Route path="profile" element={<Profile />} /> */}
 
-            <Route
-              path="admin-info"
-              element={
-                <PrivateRoute roles={["admin"]}>
-                  <Admin />
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path="admin-info"
+                element={
+                  <PrivateRoute roles={["admin"]}>
+                    <Admin />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path="create-admin"
-              element={
-                <PrivateRoute roles={["admin"]}>
-                  <CreateAdmin />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="user"
-              element={
-                <PrivateRoute roles={["user", "admin"]}>
-                  <User></User>
-                </PrivateRoute>
-              }
-            />
-          </Routes>
+              <Route
+                path="create-admin"
+                element={
+                  <PrivateRoute roles={["admin"]}>
+                    <CreateAdmin />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </div>
         </div>
       </div>
     </div>
