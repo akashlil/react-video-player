@@ -1,11 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { useGetAllUserQuery } from "../../features/auth/registrationApiInj";
 import AdminList from "./AdminList";
 
-export default function Admin() {
-  // let userRole = useSelector((state) => state?.roles?.userRole?.role);
-  let content;
+const Admin = () => {
   const {
     data: userList,
     isLoading,
@@ -13,22 +10,28 @@ export default function Admin() {
     isSuccess,
   } = useGetAllUserQuery();
 
-  if (isLoading) {
-    content = "Loding";
-  }
-  if (!isLoading && isError) {
-    content = "Error";
-  }
-  if (!isLoading && !isError && userList.length < 0) {
-    content = "no data";
-  }
-  if (!isLoading && !isError && userList.length > 0 && isSuccess) {
-    content = (
-      <div className="p-4">
-        <AdminList users={userList} />
-      </div>
-    );
-  }
+  const content = () => {
+    if (isLoading) {
+      return <Loader />;
+    } else if (isError) {
+      return <ErrorMessage />;
+    } else if (!userList || userList.length === 0) {
+      return <NoDataMessage />;
+    } else if (isSuccess) {
+      return <AdminList users={userList} />;
+    }
+    return null;
+  };
 
-  return content;
-}
+  return <div className="p-4">{content()}</div>;
+};
+
+const Loader = () => <div>Loading...</div>;
+
+const ErrorMessage = () => (
+  <div>Error fetching data. Please try again later.</div>
+);
+
+const NoDataMessage = () => <div>No data available.</div>;
+
+export default Admin;

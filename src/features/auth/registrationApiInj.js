@@ -4,7 +4,7 @@ const registerUserApi = apiSlice.injectEndpoints({
   endpoints: (bulider) => ({
     addRegisterUser: bulider.mutation({
       query: (data) => ({
-        url: "/admin/add",
+        url: "/user/add",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: data,
@@ -13,7 +13,7 @@ const registerUserApi = apiSlice.injectEndpoints({
     }),
     updateRegisterUser: bulider.mutation({
       query: (data) => ({
-        url: "/admin/edit",
+        url: "/user/edit",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: data,
@@ -22,16 +22,14 @@ const registerUserApi = apiSlice.injectEndpoints({
     }),
     deleteRegisterUser: bulider.mutation({
       query: (id) => ({
-        url: `/admin/delete/${id}`,
+        url: `/user/delete/${id}`,
         method: "DELETE",
-        // headers: { "Content-Type": "application/json" },
-        // body: id,
       }),
       invalidatesTags: ["addRegisterUser"],
     }),
     loginUser: bulider.mutation({
       query: (data) => ({
-        url: "/admin/login",
+        url: "/user/login",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: data,
@@ -39,7 +37,7 @@ const registerUserApi = apiSlice.injectEndpoints({
     }),
     getAllUser: bulider.query({
       query: () => ({
-        url: `/admin/all`,
+        url: `/user/all`,
         method: "GET",
       }),
       providesTags: ["addRegisterUser"],

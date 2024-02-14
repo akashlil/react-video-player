@@ -1,0 +1,96 @@
+/* dashbord-navbar styles */
+
+.dashbord-navbar {
+  position: fixed;
+  top: 0;
+  background-color: #00a65a;
+  z-index: 1111;
+  width: inherit;
+  padding: 15px;
+}
+.all-dashborad-content {
+  margin-top: 60px;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  overflow-y: scroll;
+}
+/* Sidebar styles */
+
+.dashboard-content {
+  display: flex;
+}
+.sidebar {
+  height: 100vh;
+  flex-basis: 15%;
+  position: relative;
+  background-color: #222d32;
+  overflow-x: hidden;
+  transition: width 0.3s; /* Smooth transition */
+}
+
+/* Content styles */
+.content {
+  width: 85%;
+  height: 100vh;
+  transition: margin-left 0.3s; /* Smooth transition */
+}
+.log-out {
+  cursor: pointer;
+}
+
+.close-btn-section {
+  display: flex;
+  /* justify-content: flex-end; */
+  position: fixed;
+  width: 300px;
+  z-index: 11;
+  align-items: center;
+  background-color: #00a65a;
+}
+/* Close button */
+.close-btn {
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+}
+.all-ul-contect {
+  list-style: none;
+  margin: 0;
+}
+.link-hover-sidebar {
+  padding: 6px 6px;
+  margin-left: 6px;
+  color: #aeadad;
+  background-color: transparent;
+  transition: all 0.5s ease-in-out;
+}
+.link-hover-sidebar.active {
+  color: #000;
+  background-color: #fff;
+}
+.gray-custom {
+  background-color: #00a65a;
+}
+
+@media screen and (max-width: 767px) {
+  .sidebar {
+    position: fixed;
+    z-index: 111;
+    width: 0%;
+  }
+
+  .sidebar.collapsed {
+    width: 50%; /* Collapsed width */
+    display: block;
+  }
+  /* Style for content when sidebar is collapsed */
+  .content {
+    width: 100%; /* Adjust for collapsed sidebar */
+  }
+  .close-btn-section {
+    width: 165px;
+  }
+  .all-ul-contect {
+    padding-left: 10px;
+  }
+}

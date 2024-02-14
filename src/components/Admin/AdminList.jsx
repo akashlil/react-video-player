@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   useDeleteRegisterUserMutation,
   useUpdateRegisterUserMutation,
@@ -6,82 +6,69 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
 import { removeUserRole } from "../../features/auth/roleSlice";
+import Paginate from "../Paginate/Paginate";
 
 const AdminList = ({ users }) => {
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(5);
-
+  const token = useSelector((state) => state?.authentication?.token);
+  const { pagination, paginationList: usersList } = Paginate(users);
   const [userData, setUserData] = useState({
     username: "",
     email: "",
     password: "",
     role: "",
+    _id: "",
   });
-
-  /* Modale Open  and edit*/
   const [showModal, setShowModal] = useState(false);
-  const handleClose = () => setShowModal(false);
 
-  const handleShow = (id) => {
-    let userOne = users.filter((user) => user._id === id);
-    console.log(userOne[0]);
-    const { username, email, password, role } = userOne[0];
-    setUserData({
-      username,
-      email,
-      password,
-      role,
-    });
-    setShowModal(true);
-  };
+  const handleClose = useCallback(() => setShowModal(false), []);
 
-  let token = useSelector((state) => state?.authentication?.token);
-  console.log(token);
-  const [deleteRegisterUser, { isLoading: isLoadingDeleteUser }] =
-    useDeleteRegisterUserMutation();
-  const handledeleteUser = async ({ id, email }) => {
-    if (email == token) {
-      const resp = await deleteRegisterUser(id);
-      if (resp.data.deletedCount > 0) {
-        dispatch(logout());
-        dispatch(removeUserRole());
-      }
-    } else {
-      const resp = await deleteRegisterUser(id);
-      console.log(resp.data.deletedCount);
-    }
-  };
+  const handleShow = useCallback(
+    (id) => {
+      const user = users.find((user) => user._id === id);
+      setUserData(user);
+      setShowModal(true);
+    },
+    [users]
+  );
 
-  // Logic for pagination
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  // //////////////
+  const [deleteRegisterUser] = useDeleteRegisterUserMutation();
   const [updateRegisterUser] = useUpdateRegisterUserMutation();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handledeleteUser = useCallback(
+    async ({ id, email }) => {
+      const resp = await deleteRegisterUser(id);
+      if (resp.data.deletedCount > 0) {
+        if (email === token) {
+          dispatch(logout());
+          dispatch(removeUserRole());
+        }
+      }
+    },
+    [deleteRegisterUser, dispatch, token]
+  );
+
+  const handleLogin = useCallback((e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-  };
+    setUserData((prevData) => ({ ...prevData, [name]: value }));
+  }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const resp = await updateRegisterUser(userData);
-
-    if (resp) {
-      setUserData({
-        username: "",
-        email: "",
-        password: "",
-        role: "",
-      });
-      handleClose();
-    }
-  };
+  const handleSubmit = useCallback(
+    async (event) => {
+      event.preventDefault();
+      const resp = await updateRegisterUser(userData);
+      if (resp) {
+        setUserData({
+          username: "",
+          email: "",
+          password: "",
+          role: "",
+        });
+        handleClose();
+      }
+    },
+    [updateRegisterUser, userData, handleClose]
+  );
 
   return (
     <div>
@@ -97,7 +84,7 @@ const AdminList = ({ users }) => {
             </tr>
           </thead>
           <tbody>
-            {currentUsers.map((user, index) => (
+            {usersList.map((user, index) => (
               <tr key={index}>
                 <td>{user.username}</td>
                 <td>{user.email}</td>
@@ -123,23 +110,7 @@ const AdminList = ({ users }) => {
           </tbody>
         </table>
       </div>
-      <nav>
-        <ul className="pagination">
-          {Array.from(
-            { length: Math.ceil(users.length / usersPerPage) },
-            (_, i) => (
-              <li
-                key={i}
-                className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
-              >
-                <button className="page-link" onClick={() => paginate(i + 1)}>
-                  {i + 1}
-                </button>
-              </li>
-            )
-          )}
-        </ul>
-      </nav>
+      {pagination}
       {showModal && (
         <div className="modal d-block mt-5" tabIndex="-1" role="dialog">
           <div className="modal-dialog" role="document">
