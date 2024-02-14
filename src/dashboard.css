@@ -1,3 +1,4 @@
+/*  */
 /* dashbord-navbar styles */
 
 .dashbord-navbar {
@@ -56,10 +57,12 @@
 .all-ul-contect {
   list-style: none;
   margin: 0;
+  padding: 0 5px;
+  margin-left: 15px;
 }
 .link-hover-sidebar {
   padding: 6px 6px;
-  margin-left: 6px;
+  margin-left: 10px;
   color: #aeadad;
   background-color: transparent;
   transition: all 0.5s ease-in-out;
@@ -89,8 +92,5 @@
   }
   .close-btn-section {
     width: 165px;
-  }
-  .all-ul-contect {
-    padding-left: 10px;
   }
 }

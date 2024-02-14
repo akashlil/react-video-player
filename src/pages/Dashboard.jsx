@@ -17,7 +17,6 @@ const Dashboard = () => {
   const sidebarRef = useRef(null);
   const contentRef = useRef(null);
   const dispatch = useDispatch();
-
   let userRole = useSelector((state) => state.roles.userRole.role);
 
   function toggleSidebar() {
@@ -37,34 +36,10 @@ const Dashboard = () => {
     dispatch(logout());
     dispatch(removeUserRole());
   };
-  const sideBarList = [
-    {
-      title: "Admin",
-      roles: ["admin"],
-      Children: [
-        { title: "Admin View", to: "admin-info" },
-        { title: "Admin Add", to: "create-admin" },
-      ],
-    },
-    {
-      title: "user",
-      roles: ["user", "admin"],
-      Children: [{ title: "user", to: "user" }],
-    },
-    {
-      title: "Videos",
-      roles: ["user", "admin"],
-      Children: [
-        { title: "Video List", to: "video_list" },
-        { title: "Add Video", to: "add_videos" },
-      ],
-    },
-  ];
   return (
     <div className="">
       <div className="dashboard-content">
         <DashBoardSidebar
-          sideBarList={sideBarList}
           userRole={userRole}
           toggleSidebar={toggleSidebar}
           activateLink={activateLink}
