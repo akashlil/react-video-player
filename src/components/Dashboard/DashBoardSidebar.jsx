@@ -12,23 +12,17 @@ const sideBarList = [
     icon: <MdAdminPanelSettings />,
     roles: ["admin"],
     Children: [
-      { title: "Admin View", to: "admin-info" },
       { title: "Admin Add", to: "create-admin" },
+      { title: "Admin View", to: "admin-info" },
     ],
-  },
-  {
-    title: "user",
-    icon: <MdSupervisedUserCircle />,
-    roles: ["user", "admin"],
-    Children: [{ title: "user", to: "user" }],
   },
   {
     title: "Videos",
     roles: ["user", "admin"],
     icon: <MdVideocam />,
     Children: [
-      { title: "Video List", to: "video_list" },
       { title: "Add Video", to: "add_videos" },
+      { title: "Video List", to: "video_list" },
     ],
   },
 ];
@@ -50,18 +44,13 @@ const DashBoardSidebar = ({
           <span className="text-white d-none d-md-block">Dashboard Home</span>
         </Link>
       </div>
-      <div className="mb-5"></div>
+      <div className="mb-5rem"></div>
       {/* Sidebar navigation */}
       {sideBarList.map((data, index) => (
         <ul className="all-ul-contect" key={index}>
           {data.roles.includes(userRole) && (
             <li className="bd-links-group pb-1">
-              <strong className="bd-links-heading d-flex w-100 fs-5 align-items-center text-light fw-semibold">
-                {/* <span
-                  dangerouslySetInnerHTML={{
-                    __html: 
-                  }}
-                /> */}
+              <strong className="bd-links-heading d-flex w-100 gap-2 fs-5 align-items-center text-light fw-semibold">
                 {data.icon}
                 <span> {data.title}</span>
               </strong>

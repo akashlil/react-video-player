@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
-import "../components/home.module.css";
 import { useGetVideoListQuery } from "../features/videos/videoApiInj";
+import "../components/home.css";
 
 function App() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);

@@ -21,3 +21,7 @@ a {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.mb-5rem {
+  margin-bottom: 5rem;
+}

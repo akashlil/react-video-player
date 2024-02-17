@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import "../dashboard.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import PrivateRoute from "../components/PrivateRoute";
 import { logout } from "../features/auth/authSlice";
@@ -11,6 +10,8 @@ import AddVideo from "../components/Videos/AddVideo";
 import Video from "../components/Videos/Video";
 import DashBoardSidebar from "../components/Dashboard/DashBoardSidebar";
 import Overview from "../components/Dashboard/Overview";
+import UpdatedFrom from "../components/Videos/UpdatedFrom";
+import "../dashboard.css";
 
 const Dashboard = () => {
   const activeLinkRef = useRef(null);
@@ -68,8 +69,9 @@ const Dashboard = () => {
             <Routes>
               <Route path="/" element={<Navigate to="overview" />} />
               <Route path="overview" element={<Overview />} />
-              <Route path="video_list" element={<Video />} />
               <Route path="add_videos" element={<AddVideo />} />
+              <Route path="video_list" element={<Video />} />
+              <Route path="video_list/update/:id" element={<UpdatedFrom />} />
 
               <Route
                 path="admin-info"

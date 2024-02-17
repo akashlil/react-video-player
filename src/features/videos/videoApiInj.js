@@ -1,10 +1,17 @@
 import { apiSlice } from "../api/apiSlice";
 
-const videosApi = apiSlice.injectEndpoints({
+export const videosApi = apiSlice.injectEndpoints({
   endpoints: (bulider) => ({
     getVideoList: bulider.query({
       query: () => ({
         url: "/video/list",
+        method: "GET",
+      }),
+      providesTags: ["Videos"],
+    }),
+    getSingalVideo: bulider.query({
+      query: (id) => ({
+        url: `/singal/video/${id}`,
         method: "GET",
       }),
       providesTags: ["Videos"],
@@ -20,19 +27,19 @@ const videosApi = apiSlice.injectEndpoints({
     }),
     deleteVideos: bulider.mutation({
       query: (id) => ({
-        url: `/user/delete/${id}`,
+        url: `/delete/video/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["addRegisterUser"],
+      invalidatesTags: ["Videos"],
     }),
     updateVideos: bulider.mutation({
       query: (data) => ({
-        url: "/user/edit",
+        url: "/edit/video",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: data,
       }),
-      invalidatesTags: ["addRegisterUser"],
+      invalidatesTags: ["Videos"],
     }),
   }),
 });
@@ -42,4 +49,5 @@ export const {
   useAddVideoMutation,
   useDeleteVideosMutation,
   useUpdateVideosMutation,
+  useGetSingalVideoQuery,
 } = videosApi;

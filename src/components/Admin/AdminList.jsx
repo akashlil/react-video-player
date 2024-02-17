@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
 import { removeUserRole } from "../../features/auth/roleSlice";
 import Paginate from "../Paginate/Paginate";
+import Modal from "../Modal/Modal";
 
 const AdminList = ({ users }) => {
   const dispatch = useDispatch();
@@ -111,62 +112,49 @@ const AdminList = ({ users }) => {
         </table>
       </div>
       {pagination}
-      {showModal && (
-        <div className="modal d-block mt-5" tabIndex="-1" role="dialog">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Edit Form</h5>
-                <button type="button" className="close" onClick={handleClose}>
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <form onSubmit={handleSubmit}>
-                  {/* Your edit form fields go here */}
-                  <div className="form-group mb-2">
-                    <label htmlFor="editField">Edit Name:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="editField"
-                      name="username"
-                      value={userData?.username}
-                      onChange={handleLogin}
-                    />
-                  </div>
-                  <div className="form-group mb-2">
-                    <label htmlFor="editFieldemail">Edit Email:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="editFieldemail"
-                      name="email"
-                      value={userData?.email}
-                      onChange={handleLogin}
-                    />
-                  </div>
-                  <div className="form-group mb-2">
-                    <label htmlFor="editFieldrole">Edit Role:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="editFieldrole"
-                      name="role"
-                      value={userData?.role}
-                      onChange={handleLogin}
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-primary btn-sm mt-3">
-                    Submit
-                  </button>
-                </form>
-              </div>
+      {
+        <Modal handleClose={handleClose} showModal={showModal}>
+          <form onSubmit={handleSubmit}>
+            {/* Your edit form fields go here */}
+            <div className="form-group mb-2">
+              <label htmlFor="editField">Edit Name:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="editField"
+                name="username"
+                value={userData?.username}
+                onChange={handleLogin}
+              />
             </div>
-          </div>
-        </div>
-      )}
-      {showModal && <div className="modal-backdrop fade show"></div>}
+            <div className="form-group mb-2">
+              <label htmlFor="editFieldemail">Edit Email:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="editFieldemail"
+                name="email"
+                value={userData?.email}
+                onChange={handleLogin}
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="editFieldrole">Edit Role:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="editFieldrole"
+                name="role"
+                value={userData?.role}
+                onChange={handleLogin}
+              />
+            </div>
+            <button type="submit" className="btn btn-primary btn-sm mt-3">
+              Submit
+            </button>
+          </form>
+        </Modal>
+      }
     </div>
   );
 };
