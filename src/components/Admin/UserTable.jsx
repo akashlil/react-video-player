@@ -1,19 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-import { useDeleteVideosMutation } from "../../features/videos/videoApiInj";
 import { useNavigate } from "react-router-dom";
 import { StyleSheetManager } from "styled-components";
+import { useDeleteRegisterUserMutation } from "../../features/auth/registrationApiInj";
 
-const VideoTable = ({ data }) => {
+const UserTable = ({ data }) => {
   const navigator = useNavigate();
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState(data);
-  const [deleteVideos] = useDeleteVideosMutation();
+  const [deleteRegisterUser] = useDeleteRegisterUserMutation();
 
   useEffect(() => {
     const filterData = () => {
       const filteredResult = data.filter((item) =>
-        item.video_title?.toLowerCase().includes(searchTerm?.toLowerCase())
+        item.username?.toLowerCase().includes(searchTerm?.toLowerCase())
       );
       setFilteredData(filteredResult);
     };
@@ -24,7 +25,7 @@ const VideoTable = ({ data }) => {
   const handleDelete = useCallback(
     async (id) => {
       try {
-        const response = await deleteVideos(id);
+        const response = await deleteRegisterUser(id);
         if (response?.data?.deletedCount > 0) {
           const updatedData = filteredData.filter((item) => item._id !== id);
           setFilteredData(updatedData);
@@ -37,32 +38,25 @@ const VideoTable = ({ data }) => {
         alert("An error occurred while deleting video");
       }
     },
-    [deleteVideos, filteredData]
+    [deleteRegisterUser, filteredData]
   );
 
   const columns = [
     { name: "id", selector: (row) => row._id, style: { maxWidth: "150px" } },
     {
-      name: "Video Title",
-      selector: (row) => row.video_title,
+      name: "User Name",
+      selector: (row) => row.username,
       style: { maxWidth: "250px" },
     },
     {
       name: "Video URL",
-      selector: (row) => row.video_url,
+      selector: (row) => row.email,
       style: { maxWidth: "250px" },
     },
     {
       name: "Video Details",
-      selector: (row) => row.video_details,
+      selector: (row) => row.role,
       style: { maxWidth: "250px" },
-    },
-    {
-      name: "Video Thumbnail",
-      selector: (row) => (
-        <img height={70} width={80} src={row.video_thumbnail} alt="Thumbnail" />
-      ),
-      style: { maxWidth: "150px" },
     },
     {
       name: "Action",
@@ -104,6 +98,8 @@ const VideoTable = ({ data }) => {
     navigator(`update/${id}`);
   };
 
+  console.log(filteredData);
+
   return (
     <StyleSheetManager shouldForwardProp={(prop) => prop !== "align"}>
       <DataTable
@@ -132,4 +128,4 @@ const VideoTable = ({ data }) => {
   );
 };
 
-export default VideoTable;
+export default UserTable;

@@ -42,6 +42,13 @@ const registerUserApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["addRegisterUser"],
     }),
+    getSingalUser: bulider.query({
+      query: (id) => ({
+        url: `/singal/user/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["addRegisterUser"],
+    }),
   }),
 });
 
@@ -51,4 +58,5 @@ export const {
   useGetAllUserQuery,
   useUpdateRegisterUserMutation,
   useDeleteRegisterUserMutation,
+  useGetSingalUserQuery,
 } = registerUserApi;

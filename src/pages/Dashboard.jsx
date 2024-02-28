@@ -12,6 +12,7 @@ import DashBoardSidebar from "../components/Dashboard/DashBoardSidebar";
 import Overview from "../components/Dashboard/Overview";
 import UpdatedFrom from "../components/Videos/UpdatedFrom";
 import "../dashboard.css";
+import UpdatedFromAdmin from "../components/Admin/UpdatedFrom";
 
 const Dashboard = () => {
   const activeLinkRef = useRef(null);
@@ -78,6 +79,14 @@ const Dashboard = () => {
                 element={
                   <PrivateRoute roles={["admin"]}>
                     <Admin />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="admin-info/update/:id"
+                element={
+                  <PrivateRoute roles={["admin"]}>
+                    <UpdatedFromAdmin />
                   </PrivateRoute>
                 }
               />

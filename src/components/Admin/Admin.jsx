@@ -1,6 +1,6 @@
 import React from "react";
 import { useGetAllUserQuery } from "../../features/auth/registrationApiInj";
-import AdminList from "./AdminList";
+import UserTable from "./UserTable";
 
 const Admin = () => {
   const {
@@ -10,20 +10,22 @@ const Admin = () => {
     isSuccess,
   } = useGetAllUserQuery();
 
-  const content = () => {
-    if (isLoading) {
-      return <Loader />;
-    } else if (isError) {
-      return <ErrorMessage />;
-    } else if (!userList || userList.length === 0) {
-      return <NoDataMessage />;
-    } else if (isSuccess) {
-      return <AdminList users={userList} />;
-    }
-    return null;
-  };
-
-  return <div className="p-4">{content()}</div>;
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (isError) {
+    return <ErrorMessage />;
+  }
+  if (!userList || !userList.length) {
+    return <NoDataMessage />;
+  }
+  if (isSuccess) {
+    return (
+      <div className="px-5">
+        <UserTable data={userList} />
+      </div>
+    );
+  }
 };
 
 const Loader = () => <div>Loading...</div>;

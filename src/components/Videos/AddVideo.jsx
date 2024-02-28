@@ -83,7 +83,7 @@ export default function AddVideo() {
               </div>
               <div className="mb-3">
                 <label htmlFor="video_thumbnail" className="form-label">
-                  Video Thumbnail Image
+                  Video Thumbnail Image Link
                 </label>
                 <input
                   type="text"

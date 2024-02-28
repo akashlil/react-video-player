@@ -1,3 +1,14 @@
+.home-content {
+  background-image: url(https://image.tmdb.org/t/p/original/gIkzFibtypfg373DKIdbsrj1keo.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 50% 0%;
+  width: 100%;
+  height: calc(100vh - 56px);
+  float: left;
+}
+
 .video-top-title {
   font-size: 24px;
   background-color: #000;
@@ -24,7 +35,7 @@
 .video-list {
   height: 500px;
   overflow-y: scroll;
-  color: #000;
+  color: #dfdfdf;
   font-weight: 400;
 }
 
@@ -42,7 +53,7 @@
 }
 .video-list > .active {
   color: #000;
-  background-color: #dfe7ec;
+  background-color: #ffffff78;
   font-weight: 600;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;

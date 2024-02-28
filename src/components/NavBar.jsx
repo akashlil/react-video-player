@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className="container-xxl">
         <div className="cs-navbar-container">
           <div className="cs-navbar-logo">
-            <Link className="logo" to={"/"}>
+            <Link className="logo text-white" to={"/"}>
               React Video Player
             </Link>
           </div>
@@ -23,7 +23,6 @@ const Navbar = () => {
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
             <Link to="/dashboard">Dashboard</Link>
-            <span className="cursor-pointer">Themes</span>
           </div>
 
           <div className="cs-navbar-toggle" onClick={toggleNav}>
