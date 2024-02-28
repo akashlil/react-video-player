@@ -42,21 +42,21 @@ const UserTable = ({ data }) => {
   );
 
   const columns = [
-    { name: "id", selector: (row) => row._id, style: { maxWidth: "150px" } },
+    { name: "id", selector: (row) => row._id, style: { maxWidth: "auto" } },
     {
       name: "User Name",
       selector: (row) => row.username,
-      style: { maxWidth: "250px" },
+      style: { maxWidth: "auto" },
     },
     {
-      name: "Video URL",
+      name: "Email",
       selector: (row) => row.email,
-      style: { maxWidth: "250px" },
+      style: { maxWidth: "auto" },
     },
     {
-      name: "Video Details",
+      name: "Role",
       selector: (row) => row.role,
-      style: { maxWidth: "250px" },
+      style: { maxWidth: "auto" },
     },
     {
       name: "Action",

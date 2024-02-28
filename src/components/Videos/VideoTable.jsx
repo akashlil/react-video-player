@@ -41,7 +41,7 @@ const VideoTable = ({ data }) => {
   );
 
   const columns = [
-    { name: "id", selector: (row) => row._id, style: { maxWidth: "150px" } },
+    { name: "id", selector: (row) => row._id, style: { maxWidth: "auto" } },
     {
       name: "Video Title",
       selector: (row) => row.video_title,
@@ -62,7 +62,7 @@ const VideoTable = ({ data }) => {
       selector: (row) => (
         <img height={70} width={80} src={row.video_thumbnail} alt="Thumbnail" />
       ),
-      style: { maxWidth: "150px" },
+      style: { maxWidth: "auto" },
     },
     {
       name: "Action",
